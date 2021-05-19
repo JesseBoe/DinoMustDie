@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Unity WebGL Player | Demo</title>
+  <link rel="shortcut icon" href="./TemplateData/favicon.ico">
+  <link rel="stylesheet" href="./TemplateData/style.css">
+  <script src="./TemplateData/UnityProgress.js"></script>
+  <script src="./Build/UnityLoader.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+  <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Latest.json", {
+      onProgress: UnityProgress
+    });
+
+    function setRes(i) {
+      gameInstance.SendMessage('Main Camera', 'SetRes', i)
+    }
+
+    function showHowToPlay(num) {
+      if (num != 1) {
+        document.getElementById("Controls").classList.add("hidden")
+      } else {
+        document.getElementById("Controls").classList.remove("hidden")
+      };
+      if (num != 2) {
+        document.getElementById("Tips").classList.add("hidden")
+      } else {
+        document.getElementById("Tips").classList.remove("hidden")
+      };
+      if (num != 3) {
+        document.getElementById("Credit").classList.add("hidden")
+      } else {
+        document.getElementById("Credit").classList.remove("hidden")
+      };
+    }
+  </script>
+
+</head>
+
+<body>
+  <div class="center">
+    <div class="card bg-dark" style="margin-top: 30px;">
+      <h5 class="card-header" style="color: white;">Dino Must Die
+        <button type="button" style="margin-right: 2px;" onclick="setRes(2)"
+          class="btn-sm btn-dark float-right">2x</button>
+        <button type="button" style="margin-right: 6px;" onclick="setRes(1)"
+          class="btn-sm btn-dark float-right">1x</button>
+      </h5>
+      <div class="card-body">
+        <div class="outer">
+          <div class="webgl-content">
+            <div id="gameContainer" style="width: 640px; height: 360px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center" style="padding-bottom: 10px;">
+    <div class="card bg-dark" style="margin-top: 30px;">
+      <h5 class="card-header" style="color: white;">How To Play:
+        <button type="button" style="margin-right: 2px;" onclick="showHowToPlay(3)"
+          class="btn-sm btn-dark float-right">Credit</button>
+        <button type="button" style="margin-right: 2px;" onclick="showHowToPlay(2)"
+          class="btn-sm btn-dark float-right">Tips</button>
+        <button type="button" style="margin-right: 2px;" onclick="showHowToPlay(1)"
+          class="btn-sm btn-dark float-right">Controls</button>
+      </h5>
+      <div class="card-body">
+        <div class="outer">
+          <div id="Controls" style="width: 640px;">
+            <h5>Controls:</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" style="vertical-align: middle;">Action</th>
+                  <th scope="col"><img src="images/keyboard.svg" style="width: 50px; height: 50px" alt=""></th>
+                  <th scope="col"><img src="images/retro-controller.svg" style="width: 50px; height: 50px" alt=""></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Move</th>
+                  <td>Arrow Keys</td>
+                  <td>Dpad/Joystick</td>
+                </tr>
+                <tr>
+                  <th scope="row">Jump</th>
+                  <td>Spacebar</td>
+                  <td>'X' Button</td>
+                </tr>
+                <tr>
+                  <th scope="row">Reset</th>
+                  <td>R Key</td>
+                  <td>Left Bumper</td>
+                </tr>
+                <tr>
+                  <th scope="row">Get Ability</th>
+                  <td>Up Arrow</td>
+                  <td>Up Dpad/Joystick</td>
+                </tr>
+                <tr>
+                  <th scope="row">Use Star</th>
+                  <td>S Key</td>
+                  <td>'Square' Button</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="Tips" class="hidden" style="width: 640px;">
+            <h5>Star Jump:</h5>
+            <img src="images/StarJump.gif" class="responsive-gif" alt="">
+            <p>To perform a star jump, you first must first collect the powerup. Pressing and holding the 'S' key will
+              create a star. Once you release the key,
+              the star will be thrown in a direction depending on if you are pressing up, down or are neutral. The
+              easiest way I find is to first jump into the air and then throw the star down. This should cause the star to
+              bounce into you allowing you to reach new hieghts and avoid spikes!</p>
+          </div>
+
+          <div id="Credit" class="hidden" style="width: 640px;">
+            <h5>Shout outs:</h5>
+            <p><b>Arks</b> for making the dinosaur character sprites! You can check out their twitter here! <a href="https://twitter.com/ScissorMarks">Twitter</a></p>
+            <br>
+            <p><b>Michele 'Buch' Bucelli</b> for making the tileset! You can look at their game art here! <a href="https://opengameart.org/users/buch">OpenGameArt</a></p>
+            <br>
+            <p>If you enjoyed the game, let me know! I would love to hear from you!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
